@@ -1,0 +1,28 @@
+import React from 'react';
+
+import Logo from '../../Logo/Logo';
+import NavigationItems from '../NavigationItems/Navigationitems';
+import classes from './SideDrawer.module.css';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
+
+const sideDrawer = (props) =>{
+    let attachedClasses = [classes.SideDrawer, classes.Close];
+    if(props.open){
+        attachedClasses =[classes.SideDrawer, classes.Open];
+    }
+
+    return(
+        <Aux>
+            <Backdrop show={props.open} clicked={props.closed}/>
+            <div className={attachedClasses.join(' ')} onClick={props.closed}>
+                <Logo height="10%"/>
+                <nav>
+                    <NavigationItems isAuthenticated={props.isAuth}/>
+                </nav>
+            </div>
+        </Aux>
+    );
+};
+
+export default sideDrawer; 
